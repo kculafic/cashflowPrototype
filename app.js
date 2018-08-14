@@ -2,14 +2,31 @@ let clicked = document.getElementById("runner");
 
 let cashFlowArray = [];
 let year = 2018;
-let retirementAge = 62;
+let retirementAge = 65;
 let lifeExpectancy = 90;
+
+let salaryInput = document.getElementById("salaryinput");
+let ageInput = document.getElementById("ageinput");
+let savingsInput = document.getElementById("savingsinput");
+let pensionInput = document.getElementById("pensioninput");
+let retirementAgeInput = document.getElementById("retirementageinput");
+let lifeExpectencyInput = document.getElementById("lifeinput");
+let yearlySavingsInput = document.getElementById("yearlysavingsinput");
 
 clicked.onclick = run;
 
 function run() {
-  console.log('clicked');
-  projectionMaker(1000000, 100000, 30000, .0375, 55, 50000);
+  let salaryInputToNum = parseInt(salaryInput.value);
+  let ageInputToNum = parseInt(ageInput.value);
+  let savingsInputToNum = parseInt(savingsInput.value);
+  let pensionInputToNum = parseInt(pensionInput.value);
+  let retirementAgeInputToNum = parseInt(retirementAgeInput.value);
+  retirementAge = retirementAgeInputToNum;
+  let lifeExpectencyInputToNum = parseInt(lifeExpectencyInput.value);
+  lifeExpectancy = lifeExpectencyInputToNum;
+  let yearlySavingsInputToNum = parseInt(yearlySavingsInput.value);
+
+  projectionMaker(savingsInputToNum, salaryInputToNum, yearlySavingsInputToNum, .0375, ageInputToNum, pensionInputToNum);
   renderTable();
 }
 
@@ -67,10 +84,10 @@ function projectionMaker(initialSavings, salary, yearlySavings, rate, age, desir
       let begBal = cashFlowArray[i-1].endBal;
       let interest = (begBal * rate)
       let acc = begBal + interest;
-      let dec = acc - desiredRetirementPension;
+      let dec = acc - pensionAdjustedForInflation;
       dec = Math.round(dec * 100) / 100;
 
-      obj.begBalance = dec;
+      obj.begBalance = cashFlowArray[i-1].endBal;
       obj.salary = 0;
       obj.interest = Math.round(interest * 100) / 100;
       obj.yearlySavings = 0;
