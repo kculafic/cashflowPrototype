@@ -32,7 +32,6 @@ function run() {
 
 function projectionMaker(initialSavings, salary, yearlySavings, rate, age, desiredRetirementPension) {
   let timeLeftAlive = lifeExpectancy - age;
-
   for (let i=0; i<=timeLeftAlive; i++) {
     let obj = new Object();
 
@@ -51,8 +50,6 @@ function projectionMaker(initialSavings, salary, yearlySavings, rate, age, desir
       let begBal = initialSavings;
       let interest = (begBal * rate)
       let acc = begBal + interest + yearlySavings;
-      // let dec = acc - desiredRetirementPension;
-      // dec = Math.round(dec * 100) / 100;
 
       obj.begBalance = initialSavings;
       obj.salary = salary;
@@ -67,7 +64,6 @@ function projectionMaker(initialSavings, salary, yearlySavings, rate, age, desir
       }
 
       obj.endBal = acc;
-
     }
     else if (obj.retiredStatus === true) {
       let pensionInflation;
@@ -94,25 +90,25 @@ function projectionMaker(initialSavings, salary, yearlySavings, rate, age, desir
       obj.desiredRetirementPension = Math.round(pensionAdjustedForInflation * 100) / 100;
       obj.endBal = dec;
 
-      }
-      else if (obj.retiredStatus === false) {
-        let salaryInterest = (cashFlowArray[i-1].salary * 0.03)
-        let salaryAdjustedForInflation = salaryInterest + cashFlowArray[i-1].salary;
-
-        let begBal = cashFlowArray[i-1].endBal;
-        let interest = (begBal * rate)
-        let acc = begBal + interest + yearlySavings;
-        acc = Math.round(acc * 100) / 100;
-
-        obj.begBalance = cashFlowArray[i-1].endBal;
-        obj.salary = Math.round(salaryAdjustedForInflation * 100) / 100;
-        obj.interest = Math.round(interest * 100) / 100;;
-        obj.yearlySavings = yearlySavings;
-        obj.desiredRetirementPension = 0;
-        obj.endBal = acc;
-      }
-      cashFlowArray.push(obj)
     }
+    else if (obj.retiredStatus === false) {
+      let salaryInterest = (cashFlowArray[i-1].salary * 0.025)
+      let salaryAdjustedForInflation = salaryInterest + cashFlowArray[i-1].salary;
+
+      let begBal = cashFlowArray[i-1].endBal;
+      let interest = (begBal * rate)
+      let acc = begBal + interest + yearlySavings;
+      acc = Math.round(acc * 100) / 100;
+
+      obj.begBalance = cashFlowArray[i-1].endBal;
+      obj.salary = Math.round(salaryAdjustedForInflation * 100) / 100;
+      obj.interest = Math.round(interest * 100) / 100;;
+      obj.yearlySavings = yearlySavings;
+      obj.desiredRetirementPension = 0;
+      obj.endBal = acc;
+    }
+    cashFlowArray.push(obj)
+  }
 }
 
 let tableRef = document.getElementById("tbody");
