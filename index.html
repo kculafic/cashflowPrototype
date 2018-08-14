@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Cash Flow Projector</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="app.css"> -->
+  </head>
+  <body>
+    <div class="container">
+      <h1>Cash Flow Projector</h1>
+      <fieldset>
+        <legend></legend>
+
+          <form onsubmit="return false;">
+            <!-- <div class="centered">
+              <label><input name="status" id="ms1" type="radio" value="single" checked>Single</label>
+              <label><input name="status" id="ms2" type="radio" value="married">Married</label>
+            </div> -->
+            <div class="">
+              <label>Enter your salary: </label>
+              <input id="salary" />
+              <span></span>
+            </div>
+            <div class="">
+              <label>Age: </label>
+              <input id="age" />
+              <span></span>
+            </div>
+            <div class="">
+              <label>Initial Savings: </label>
+              <input id="savings" />
+              <span></span>
+            </div>
+            <div class="">
+              <label>Desired Retirement income: </label>
+              <input id="pension" />
+              <span></span>
+            </div>
+            <div class="">
+              <label>Retirement Age: </label>
+              <input id="retirementAge" />
+              <span></span>
+            </div>
+            <div class="">
+              <label>Life Expectancy: </label>
+              <input id="savings" />
+              <span></span>
+            </div>
+            <p>(*adjusted for inflation at a rate of 2.5%)</p>
+            <!-- <div class="">
+              <label>Enter the number of years to calculate: </label>
+              <input id="years"ß />
+              <span></span>
+            </div> -->
+            <div>
+                <!-- <input type="submit" id="runner" class="submit" value="Submit" /> -->
+
+                <button id="runner"> Run </button>
+            </div>
+          </form>
+      </fieldset>
+    </div>
+
+    <br>
+    <div class='container'>
+      <table class="table-sm table-bordered table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Retired?</th>
+            <th scope="col">Age</th>
+            <th scope="col">Year</th>
+            <th scope="col">StartBalance</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Yearly Savings</th>
+            <th scope="col">Pension</th>
+            <th scope="col">EndBalance</th>
+            <!-- <th scope="col">Total Taxed Amount</th>
+            <th scope="col">Total Take Home Pay</th> -->
+          </tr>
+
+        </thead>
+
+        <tbody id="tbody">
+          <!-- Rendered rows append here  -->
+        </tbody>
+      </table>
+
+      <div style="padding-bottom: 255px">
+
+      </div>
+    </div>
+  </body>
+  <script src="app.js"></script>
+  <!-- <script src="scripts/accounting.js"></script> -->
+</html>
